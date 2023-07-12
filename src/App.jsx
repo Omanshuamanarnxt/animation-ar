@@ -16,6 +16,10 @@ const App = () => {
     };
     modelViewer.addEventListener("load", play);
     modelViewer.addEventListener("finished", play);
+
+    // Pause the model initially
+    modelViewer.pause();
+    setIsPlaying(false);
   }, []);
 
   const handleToggleAnimation = () => {
