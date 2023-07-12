@@ -28,7 +28,7 @@ const App = () => {
         ar-modes="webxr scene-viewer"
         scale="0.2 0.2 0.2"
         shadow-intensity="1"
-        src="./src/assets/RobotExpressive.glb"
+        src="https://jobpostingbucket.s3.ap-south-1.amazonaws.com/wallsandfloor/RobotExpressive.glb"
         alt="An animate 3D model of a robot"></model-viewer>
     </div>
   );
