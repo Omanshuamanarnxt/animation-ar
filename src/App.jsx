@@ -4,9 +4,8 @@ import "./App.css";
 const App = () => {
   const modelViewerRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-
   useEffect(() => {
-    const modelViewer = document.querySelector("#change-speed-demo");
+    const modelViewer = modelViewerRef.current;
     const speeds = [1, 2, 0.5, -1];
 
     let i = 0;
@@ -14,12 +13,18 @@ const App = () => {
       modelViewer.timeScale = speeds[i++ % speeds.length];
       modelViewer.play({ repetitions: 1 });
     };
-    modelViewer.addEventListener("load", play);
-    modelViewer.addEventListener("finished", play);
 
-    // Pause the model initially
-    modelViewer.pause();
-    setIsPlaying(false);
+    if (modelViewer.loaded) {
+      modelViewer.addEventListener("finished", play);
+      modelViewer.pause();
+      setIsPlaying(false);
+    } else {
+      modelViewer.addEventListener("load", () => {
+        modelViewer.addEventListener("finished", play);
+        modelViewer.pause();
+        setIsPlaying(false);
+      });
+    }
   }, []);
 
   const handleToggleAnimation = () => {
