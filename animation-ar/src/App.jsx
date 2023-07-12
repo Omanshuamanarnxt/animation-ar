@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useRef } from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const modelViewerRef = useRef(null);
+
+  useEffect(() => {
+    const modelViewer = document.querySelector("#change-speed-demo");
+    const speeds = [1, 2, 0.5, -1];
+
+    let i = 0;
+    const play = () => {
+      modelViewer.timeScale = speeds[i++ % speeds.length];
+      modelViewer.play({ repetitions: 1 });
+    };
+    modelViewer.addEventListener("load", play);
+    modelViewer.addEventListener("finished", play);
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <model-viewer
+        id="change-speed-demo"
+        camera-controls
+        touch-action="pan-y"
+        animation-name="Dance"
+        ar
+        ar-modes="webxr scene-viewer"
+        scale="0.2 0.2 0.2"
+        shadow-intensity="1"
+        src="./src/assets/RobotExpressive.glb"
+        alt="An animate 3D model of a robot"></model-viewer>
+    </div>
+  );
+};
 
-export default App
+export default App;
