@@ -44,7 +44,7 @@ const App = () => {
         shadow-intensity="1"
         src="https://jobpostingbucket.s3.ap-south-1.amazonaws.com/wallsandfloor/RobotExpressive.glb"
         alt="An animate 3D model of a robot"></model-viewer>
-      <div className="ar-controls">
+      <div id="controls" className="dim">
         <button onClick={handleToggleAnimation}>
           {isPlaying ? "Pause" : "Play"}
         </button>
