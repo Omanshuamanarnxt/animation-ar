@@ -16,7 +16,7 @@ const App = () => {
     modelViewer.addEventListener("load", play);
     modelViewer.addEventListener("finished", play);
   }, []);
-
+  //test
   return (
     <div>
       <model-viewer
