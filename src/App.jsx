@@ -43,12 +43,13 @@ const App = () => {
         scale="0.2 0.2 0.2"
         shadow-intensity="1"
         src="https://jobpostingbucket.s3.ap-south-1.amazonaws.com/wallsandfloor/RobotExpressive.glb"
-        alt="An animate 3D model of a robot"></model-viewer>
-      <div id="controls" className="dim">
-        <button onClick={handleToggleAnimation}>
-          {isPlaying ? "Pause" : "Play"}
-        </button>
-      </div>
+        alt="An animate 3D model of a robot">
+        <div id="controls" className="dim">
+          <button onClick={handleToggleAnimation}>
+            {isPlaying ? "Pause" : "Play"}
+          </button>
+        </div>
+      </model-viewer>
     </div>
   );
 };
